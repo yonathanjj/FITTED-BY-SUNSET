@@ -50,66 +50,69 @@
 
 /*
 =====================================
-    HERO SECTION (REWRITTEN V2 - FINAL)
+    HERO SECTION (FINAL REFINED VERSION)
 =====================================
 */
 
-/* The .hero class provides the page background color and acts as a "frame" */
+/* --- DESKTOP STYLES (Applies by default) --- */
+
+/* The .hero acts as the outer "canvas" or frame */
 .hero {
     background-color: #EBEAE8;
     box-sizing: border-box;
-    /* DESKTOP: Add generous padding to create the outer frame */
-    padding: 40px;
+    /* Add generous padding to create the visible frame */
+    padding: 5vh 5vw; /* Use viewport units for responsive padding */
 }
 
 /* The .container is the visual block with the image */
 .hero .container {
     position: relative;
-    background: url('https://i.imgur.com/2sMRQh3.png') no-repeat center center;
+    background: url('2.png') no-repeat center center;
     background-size: cover;
 
-    /* --- DESKTOP BEHAVIOR --- */
-    /* DESKTOP: This is the key change. It's no longer full-width. */
-    max-width: 1400px; /* Set a max-width to contain it */
-    margin: 0 auto;     /* Center the container within the padded hero section */
+    /* FIX: Constrain the width significantly for the "art gallery" look */
+    max-width: 1100px;
+    margin: 0 auto; /* Center the container horizontally */
 
-    /* Use aspect-ratio for a consistent cinematic shape on desktop */
-    aspect-ratio: 1920 / 940;
+    /* Maintain a cinematic shape */
+    aspect-ratio: 16 / 9;
 
-    /* Flexbox setup to place the content bar at the bottom */
+    /* Layout for the bottom content bar */
     display: flex;
     align-items: flex-end;
     padding: 30px;
 }
 
-/* The .hero-content is the overlay bar at the bottom */
+/* The content bar at the bottom */
 .hero-content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
-    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* --- Text & Button styles (primarily for desktop) --- */
 .hero-text-wrapper {
     text-align: left;
-    transition: opacity 0.3s ease; /* For smooth hiding on mobile */
 }
+
 .hero-content h1, .hero-content p {
     margin: 0;
     line-height: 1.4;
     text-transform: none;
 }
+
 .hero-content h1 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
 }
+
 .hero-content p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.8;
 }
+
 .hero-btn {
     display: inline-flex;
     align-items: center;
@@ -121,16 +124,16 @@
     color: white;
     background-color: transparent;
     cursor: pointer;
-    text-transform: none;
     transition: background-color 0.3s, color 0.3s;
     white-space: nowrap;
 }
+
 .hero-btn:hover {
     background-color: white;
     color: #212121;
 }
 
-/* Decorative Brackets (Optional) */
+/* Optional Decorative Brackets for Desktop */
 .corner-bracket {
     position: absolute;
     width: 30px; height: 30px;
@@ -141,38 +144,46 @@
 .corner-bracket.top-left { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
 .corner-bracket.bottom-right { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
 
+
 /*
 =====================================
-    MOBILE-SPECIFIC OVERHAUL (THE FIX)
+    MOBILE OVERHAUL (THE COMPLETE FIX)
 =====================================
 */
 @media (max-width: 768px) {
-    /* CRITICAL: Make the hero section full-bleed by removing the frame's padding */
+    /* Make the hero section itself take up the full screen */
     .hero {
-        padding: 0;
+        padding: 0; /* Remove the frame */
     }
 
     .hero .container {
-        /* CRITICAL: Make the image container itself full-width */
-        max-width: 100%;
+        max-width: 100%; /* Ensure it spans the full width */
 
-        /* CRITICAL: Ditch the widescreen aspect ratio for a mobile-friendly height */
-        aspect-ratio: auto;
-        min-height: 70vh; /* A good height for mobile screens */
+        /* FIX: Create a true full-screen immersive experience */
+        height: 100dvh; /* Dynamic viewport height, best for mobile */
+        min-height: 600px; /* Fallback for older browsers */
+        aspect-ratio: auto; /* CRITICAL: Disable desktop aspect ratio */
 
-        /* CRITICAL: Change flex alignment to center the button perfectly */
+        /* FIX: Add a dark overlay for better contrast and a premium feel */
+        background-image:
+            linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            url('2.png');
+
+        /* FIX: Change layout to center the content vertically and horizontally */
         align-items: center;
         justify-content: center;
+        padding: 20px; /* Some padding for safety */
     }
 
-    /* CRITICAL: HIDE the text on mobile for a clean, button-focused look */
-    .hero-text-wrapper {
-        display: none;
-    }
-
-    /* Make sure the brackets are hidden if the frame is gone */
+    /* FIX: Hide the text and brackets on mobile for a clean, button-only look */
+    .hero-text-wrapper,
     .corner-bracket {
         display: none;
+    }
+
+    /* The content block now only holds the button, so we center it */
+    .hero-content {
+        justify-content: center;
     }
 }
 
