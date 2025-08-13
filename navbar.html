@@ -5,7 +5,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
 
+<!-- Navbar Specific Styles -->
 <style>
+  /* These variables should be defined in your main CSS file, 
+     but are here as a fallback just in case. */
+  :root {
+      --bg-main: #ffffff;
+      --bg-section: #f0f0f0;
+      --text-dark: #333333;
+      --font-main: 'Source Code Pro', monospace;
+  }
+
   /* DESKTOP NAVBAR STYLES */
   .main-header {
       position: fixed;
@@ -22,6 +32,10 @@
       align-items: center;
       height: 70px;
       position: relative;
+      /* The .container class should be on your main page for consistency */
+      max-width: 1200px; 
+      margin: 0 auto;
+      padding: 0 15px;
   }
   .nav-group {
       display: flex;
@@ -38,12 +52,16 @@
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: capitalize;
+      text-decoration: none;
+      color: var(--text-dark);
   }
   .logo:hover { opacity: 0.8; }
   .nav-group a {
       font-family: var(--font-main);
       text-transform: uppercase;
       font-size: 14px;
+      text-decoration: none;
+      color: var(--text-dark);
   }
 
   /* HAMBURGER MENU */
@@ -57,7 +75,7 @@
       border: none;
       cursor: pointer;
       padding: 0;
-      z-index: 1010;
+      z-index: 1010; /* Sits above the nav, below the overlay */
   }
   .hamburger-menu .bar {
       width: 100%;
@@ -75,7 +93,7 @@
       width: 100%;
       height: 100%;
       background-color: var(--bg-main);
-      z-index: 1100;
+      z-index: 1100; /* Highest z-index to cover everything */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -101,6 +119,7 @@
       color: var(--text-dark);
       text-transform: capitalize;
       font-weight: 600;
+      text-decoration: none;
   }
   .close-menu {
       position: absolute;
@@ -117,44 +136,51 @@
   @media (max-width: 768px) {
       .header-nav {
           height: 60px;
+          justify-content: space-between; /* Ensure logo and hamburger are spaced out */
       }
       .nav-group {
           display: none;
       }
       .hamburger-menu {
           display: flex;
+          order: 3; /* Places hamburger on the far right */
       }
       .logo {
           position: static;
           transform: none;
+          margin: 0;
+          flex-grow: 1; /* Allows the logo to take up space */
+          text-align: center;
       }
   }
 </style>
 
+<!-- Main Header HTML Structure -->
 <header class="main-header">
-  <div class="container">
-    <nav class="header-nav">
-      <div class="nav-group left">
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-      </div>
+  <nav class="header-nav">
+    <!-- These nav groups are hidden on mobile by the CSS -->
+    <div class="nav-group left">
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+    </div>
 
-      <a href="index.html" class="logo">Fitted by Sunset</a>
+    <a href="index.html" class="logo">Fitted by Sunset</a>
 
-      <div class="nav-group right">
-        <a href="contact.html">Contact</a>
-        <a href="#">Cart</a>
-      </div>
+    <div class="nav-group right">
+      <a href="contact.html">Contact</a>
+      <a href="#">Cart</a>
+    </div>
 
-      <button class="hamburger-menu" id="hamburger-btn" aria-label="Open menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-    </nav>
-  </div>
+    <!-- This hamburger button is shown on mobile by the CSS -->
+    <button class="hamburger-menu" id="hamburger-btn" aria-label="Open menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
 </header>
 
+<!-- The mobile menu overlay is part of the navbar component -->
 <div class="mobile-menu-overlay" id="mobile-menu">
   <button class="close-menu" id="close-menu-btn" aria-label="Close menu">&times;</button>
   <nav class="mobile-nav-links">
@@ -164,4 +190,3 @@
     <a href="#">Cart</a>
   </nav>
 </div>
-
