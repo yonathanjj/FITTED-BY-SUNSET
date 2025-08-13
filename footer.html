@@ -1,0 +1,131 @@
+<!-- footer.html -->
+
+<style>
+  /* Shared container styling */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .main-footer {
+    padding: 80px 40px 40px 40px;
+    background-color: var(--bg-main);
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-about {
+    max-width: 300px;
+  }
+
+  .logo-footer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+
+  .footer-about p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    text-transform: uppercase;
+  }
+
+  .footer-links-group {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+  }
+
+  .footer-col h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-col li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .footer-links-group {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+</style>
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-about">
+        <h3 class="logo-footer">Fitted by Sunset</h3>
+        <p>Premium basics, ethically crafted. Designed for durability and timeless style. From fabric to form, made in Canada.</p>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Information</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Wholesale</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Fitted by Sunset. All Rights Reserved</p>
+    </div>
+  </div>
+</footer>

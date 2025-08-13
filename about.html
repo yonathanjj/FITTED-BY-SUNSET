@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - House of Blanks</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+        /* ------------------- */
+        /* --- GLOBAL STYLES & RESET (from index.html) --- */
+        /* ------------------- */
+        :root {
+            --bg-main: #EBEAE8;
+            --bg-section: #DCD9D4;
+            --text-dark: #212121;
+            --text-light: #F5F5F5;
+            --text-muted: #555555;
+            --border-color: #A9A9A9;
+            --font-main: 'Source Code Pro', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-size: 14px;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ------------------- */
+        /* --- ABOUT PAGE STYLES --- */
+        /* ------------------- */
+
+        .about-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .about-content {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .about-image {
+            margin-bottom: 40px;
+            background-color: #DDDDDD; /* Placeholder color */
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 45vh;
+            object-fit: cover;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .about-mantra {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 50px;
+        }
+
+        .back-to-shop-btn {
+            display: inline-block;
+            border: 1px solid var(--text-dark);
+            padding: 12px 35px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-to-shop-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--bg-main);
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 1.2rem;
+            }
+            .about-text {
+                font-size: 0.9rem;
+            }
+            .about-image img {
+                height: 35vh;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<main class="about-wrapper">
+    <div class="about-content">
+
+        <h1 class="about-title">MEET BETSELOT_</h1>
+
+        <div class="about-image">
+            <img src="b.png" alt="Handpicked fabrics stacked neatly in a studio">
+        </div>
+
+        <p class="about-text">
+            I am Betselot — a self-taught maker from Ethiopia, crafting clothing that blends comfort, style, and soul. Every piece is made by hand, from cutting the first thread to the final stitch. I believe clothing should feel good to wear, last for years, and carry a story you’re proud to share.
+        </p>
+
+        <p class="about-text">
+            My process is slow and intentional. I choose fabrics that are soft yet durable, inspired by earthy tones and timeless silhouettes. I make each garment with the hope that it becomes a cherished part of your everyday life.
+        </p>
+
+        <p class="about-mantra">
+            HANDMADE IN ETHIOPIA. DESIGNED TO LAST.
+        </p>
+
+        <a href="shop.html" class="back-to-shop-btn">EXPLORE THE COLLECTION</a>
+
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="loader.js"></script>
+
+</body>
+</html>

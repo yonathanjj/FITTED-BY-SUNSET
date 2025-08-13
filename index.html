@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitted by Sunset - Premium Basics</title>
+
+    <style>
+        /* GLOBAL STYLES */
+        :root {
+            --bg-main: #EBEAE8;
+            --bg-section: #DCD9D4;
+            --text-dark: #212121;
+            --text-muted: #555555;
+            --border-color: #A9A9A9;
+            --font-main: 'Source Code Pro', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-size: 14px;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .section-padding { padding: 80px 0; }
+        .section-title { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 40px; font-weight: 700; text-align: center; }
+        .view-all-btn {
+            display: inline-block;
+            border: 1px solid var(--text-dark);
+            padding: 10px 30px;
+            text-align: center;
+            margin-top: 40px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .view-all-btn:hover { background-color: var(--text-dark); color: var(--bg-main); }
+
+        /* PAGE LAYOUT */
+        main { padding-top: 70px; }
+
+        /*
+  Note: This design works best on a light page background.
+  Add this to your body or a parent wrapper:
+  background-color: #EBEAE8;
+*/
+
+/*
+=====================================
+    HERO SECTION (REWRITTEN V2 - FINAL)
+=====================================
+*/
+
+/* The .hero class provides the page background color and acts as a "frame" */
+.hero {
+    background-color: #EBEAE8;
+    box-sizing: border-box;
+    /* DESKTOP: Add generous padding to create the outer frame */
+    padding: 40px;
+}
+
+/* The .container is the visual block with the image */
+.hero .container {
+    position: relative;
+    background: url('https://i.imgur.com/2sMRQh3.png') no-repeat center center;
+    background-size: cover;
+
+    /* --- DESKTOP BEHAVIOR --- */
+    /* DESKTOP: This is the key change. It's no longer full-width. */
+    max-width: 1400px; /* Set a max-width to contain it */
+    margin: 0 auto;     /* Center the container within the padded hero section */
+
+    /* Use aspect-ratio for a consistent cinematic shape on desktop */
+    aspect-ratio: 1920 / 940;
+
+    /* Flexbox setup to place the content bar at the bottom */
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+}
+
+/* The .hero-content is the overlay bar at the bottom */
+.hero-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Text & Button styles (primarily for desktop) --- */
+.hero-text-wrapper {
+    text-align: left;
+    transition: opacity 0.3s ease; /* For smooth hiding on mobile */
+}
+.hero-content h1, .hero-content p {
+    margin: 0;
+    line-height: 1.4;
+    text-transform: none;
+}
+.hero-content h1 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.hero-content p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border: 1px solid white;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    text-transform: none;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+}
+.hero-btn:hover {
+    background-color: white;
+    color: #212121;
+}
+
+/* Decorative Brackets (Optional) */
+.corner-bracket {
+    position: absolute;
+    width: 30px; height: 30px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.4);
+    border-width: 0;
+}
+.corner-bracket.top-left { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+.corner-bracket.bottom-right { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+/*
+=====================================
+    MOBILE-SPECIFIC OVERHAUL (THE FIX)
+=====================================
+*/
+@media (max-width: 768px) {
+    /* CRITICAL: Make the hero section full-bleed by removing the frame's padding */
+    .hero {
+        padding: 0;
+    }
+
+    .hero .container {
+        /* CRITICAL: Make the image container itself full-width */
+        max-width: 100%;
+
+        /* CRITICAL: Ditch the widescreen aspect ratio for a mobile-friendly height */
+        aspect-ratio: auto;
+        min-height: 70vh; /* A good height for mobile screens */
+
+        /* CRITICAL: Change flex alignment to center the button perfectly */
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* CRITICAL: HIDE the text on mobile for a clean, button-focused look */
+    .hero-text-wrapper {
+        display: none;
+    }
+
+    /* Make sure the brackets are hidden if the frame is gone */
+    .corner-bracket {
+        display: none;
+    }
+}
+
+
+
+        /* NEW ARRIVALS INTRO SECTION */
+        .new-arrivals { text-align: center; padding: 80px 40px; }
+        .new-arrivals p { max-width: 600px; margin: 0 auto; color: var(--text-muted); line-height: 1.8; }
+
+        /* PRODUCT GRID */
+        .product-section { text-align: center; }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
+        .product-card { cursor: pointer; }
+        .product-image-wrapper { position: relative; background-color: #DDDDDD; overflow: hidden; margin-bottom: 15px; }
+        .product-image-wrapper img { transition: transform 0.4s ease; aspect-ratio: 4 / 5; object-fit: cover; }
+        .product-card:hover .product-image-wrapper img { transform: scale(1.05); }
+        .product-info h3 { font-size: 0.9rem; font-weight: 500; }
+        .product-price { font-weight: 500; }
+
+        /* PRODUCTION SECTION */
+        .production-section { background-color: var(--bg-section); }
+        .production-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left; }
+        .production-item img { width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px; }
+        .production-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+        .production-item p { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); }
+
+        /* NEWSLETTER SECTION */
+        .newsletter-section { background-color: var(--bg-section); }
+        .newsletter-content { display: flex; align-items: center; gap: 60px; }
+        .newsletter-form { flex: 1; }
+        .newsletter-form h2 { font-size: 1.5rem; margin-bottom: 20px; }
+        .email-input-group { display: flex; border-bottom: 1px solid var(--text-dark); padding-bottom: 10px; margin-bottom: 20px; }
+        .email-input-group input { flex-grow: 1; border: none; background: transparent; font-family: var(--font-main); font-size: 1rem; outline: none; }
+        .email-input-group button { border: none; background: transparent; font-family: var(--font-main); font-size: 1rem; cursor: pointer; text-transform: uppercase; }
+        .newsletter-image { flex: 1; }
+        .newsletter-image img { width: 100%; height: 450px; object-fit: cover; }
+
+        /*
+=====================================
+    OUR MATERIALS SECTION (REWRITTEN)
+=====================================
+*/
+.our-materials-section {
+    padding: 100px 0; /* Clean vertical spacing for the whole section */
+    background-color: var(--bg-section); /* Moves the background color here */
+}
+
+/* This is the new grid layout container */
+.materials-grid {
+    display: grid;
+    /* Create two columns: one for text, one for the image */
+    grid-template-columns: 1fr 1fr;
+    gap: 80px; /* The space between the text and the image */
+    align-items: center; /* This vertically aligns the text and image beautifully */
+}
+
+/* --- The Text Column --- */
+.materials-text-content {
+    /* Text is now left-aligned, which is easier to read in a column */
+    text-align: left;
+}
+
+.materials-text-content .section-title {
+    /* You can use your existing .section-title class */
+    margin-bottom: 20px;
+}
+
+.materials-text-content p {
+    /* Let the grid column control the width, removing the need for max-width here */
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1rem; /* Slightly larger for better readability */
+}
+
+/* --- The Image Column --- */
+.materials-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block; /* Removes any extra space below the image */
+    /* Add a subtle shadow for depth and a premium feel */
+    box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.08);
+    /* Optional: a very subtle border */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- RESPONSIVE STYLES --- */
+/* For tablets and mobile devices */
+@media (max-width: 900px) {
+    .materials-grid {
+        /* Switch to a single column layout */
+        grid-template-columns: 1fr;
+        gap: 50px; /* Adjust the space for the stacked layout */
+    }
+
+    .materials-text-content {
+        /* Center the text when the layout is stacked */
+        text-align: center;
+    }
+
+    .materials-text-content p {
+        /* Re-introduce max-width to keep lines readable in the centered, single column */
+        max-width: 600px;
+        margin: 0 auto; /* This centers the paragraph block */
+    }
+}
+
+        /* PRODUCT MODAL STYLES (Same as shop.html) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7);
+            display: flex; justify-content: center; align-items: center; z-index: 2000;
+            visibility: hidden; opacity: 0; transition: visibility 0s 0.3s, opacity 0.3s ease; padding: 20px;
+        }
+        .modal-overlay.show { visibility: visible; opacity: 1; transition-delay: 0s; }
+        .modal-content {
+            background: var(--bg-main); width: 100%; max-width: 900px; display: flex; gap: 30px;
+            position: relative; transform: translateY(20px); opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease; max-height: 90vh;
+        }
+        .modal-overlay.show .modal-content { transform: translateY(0); opacity: 1; }
+        .modal-close { position: absolute; top: 15px; right: 15px; font-size: 2rem; cursor: pointer; line-height: 1; z-index: 10; }
+        .modal-gallery { flex: 1 1 55%; display: flex; flex-direction: column; gap: 10px; }
+        .modal-main-image img { width: 100%; height: auto; object-fit: cover; aspect-ratio: 4 / 5; background-color: #ddd; }
+        .modal-thumbnails { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .modal-thumbnail { cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+        .modal-thumbnail.active { border-color: var(--text-dark); }
+        .modal-thumbnail img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+        .modal-details { flex: 1 1 45%; padding: 20px 20px 20px 0; overflow-y: auto; }
+        .modal-title { font-size: 1.5rem; margin-bottom: 10px; }
+        .modal-price { font-size: 1.2rem; margin-bottom: 20px; font-weight: 700; }
+        .modal-description { font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 25px; }
+        .modal-options-group { margin-bottom: 25px; }
+        .modal-options-group h4 { font-size: 0.9rem; margin-bottom: 10px; }
+        .modal-options-group .options-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .option-button { background: transparent; border: 1px solid var(--border-color); padding: 8px 15px; font-family: var(--font-main); text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+        .option-button:hover { border-color: var(--text-dark); }
+        .option-button.active { background-color: var(--text-dark); color: var(--bg-main); border-color: var(--text-dark); }
+        .add-to-cart-btn { display: block; width: 100%; background-color: var(--text-dark); color: var(--bg-main); padding: 12px 30px; text-align: center; margin-top: 20px; border: 1px solid var(--text-dark); transition: all 0.3s; }
+        .add-to-cart-btn:hover { background-color: var(--bg-main); color: var(--text-dark); }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 992px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .production-grid { grid-template-columns: 1fr; }
+            .newsletter-content { flex-direction: column-reverse; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            main { padding-top: 60px; }
+            .hero { height: 60vh; }
+            .section-padding { padding: 60px 0; }
+            .modal-content { flex-direction: column; gap: 20px; padding: 20px; }
+            .modal-details { padding: 0; }
+        }
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<main>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="container">
+
+            <!-- This is the content overlay at the bottom -->
+            <div class="hero-content">
+                <!-- Wrapper for the text on the left -->
+
+                <!-- The button on the right -->
+                <a href="shop.html" class="hero-btn">
+                    <span>Shop</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INTRO / FEATURE -->
+    <section class="new-arrivals">
+        <div class="container">
+            <h2 class="section-title">HANDCRAFTED WITH HEART</h2>
+            <p>Each piece is made by Betselot — blending comfort, timeless style, and the soul of handmade artistry. Designed for both men and women, every garment tells a story of care, patience, and quality.</p>
+        </div>
+    </section>
+
+    <!-- BESTSELLERS -->
+    <section class="bestsellers-section product-section section-padding">
+        <div class="container">
+            <h2 class="section-title">FAVORITES_</h2>
+            <div class="product-grid">
+                <!-- Example Product 1 -->
+                <div class="product-card" data-title="Sage Linen Shirt" data-price="ETB 1,500" data-description="A relaxed-fit linen shirt, perfect for the Ethiopian climate. Soft to the touch, breathable, and versatile for all-day wear." data-sizes="S,M,L,XL" data-colors="Sage,White" data-images="https://i.imgur.com/eunVwD3.png,https://i.imgur.com/vHqB9iA.png">
+                    <div class="product-image-wrapper"><img src="kid2.png" alt="Sage Linen Shirt"></div>
+                    <div class="product-info"><h3>Sage Linen Shirt</h3><p class="product-price">ETB 1,500</p></div>
+                </div>
+                <!-- Example Product 2 -->
+                <div class="product-card" data-title="Everyday Hoodie" data-price="ETB 2,500" data-description="A cozy hoodie handcrafted for warmth and style. Made with premium fleece for lasting comfort." data-sizes="S,M,L,XL" data-colors="African Violet,Jet" data-images="https://i.imgur.com/K3Z4Y6H.png,https://i.imgur.com/h9yR1jN.png">
+                    <div class="product-image-wrapper"><img src="kid.png" alt="Everyday Hoodie"></div>
+                    <div class="product-info"><h3>Everyday Hoodie</h3><p class="product-price">ETB 2,500</p></div>
+                </div>
+                <!-- Example Product 3 -->
+                <div class="product-card" data-title="Jet Quarter Zip" data-price="ETB 2,800" data-description="Minimalist design meets handmade precision. A quarter zip sweatshirt perfect for layering." data-sizes="S,M,L" data-colors="Jet,Alabaster" data-images="https://i.imgur.com/Y36T8M7.png,https://i.imgur.com/z4vL1eI.png">
+                    <div class="product-image-wrapper"><img src="kid2.png" alt="Jet Quarter Zip"></div>
+                    <div class="product-info"><h3>Jet Quarter Zip</h3><p class="product-price">ETB 2,800</p></div>
+                </div>
+                <!-- Example Product 4 -->
+                <div class="product-card" data-title="Classic White Tee" data-price="ETB 1,200" data-description="The essential everyday tee — lightweight, breathable, and handmade with care." data-sizes="S,M,L,XL" data-colors="White,Sage" data-images="https://i.imgur.com/vHqB9iA.png,https://i.imgur.com/eunVwD3.png">
+                    <div class="product-image-wrapper"><img src="kid.png" alt="Classic White Tee"></div>
+                    <div class="product-info"><h3>Classic White Tee</h3><p class="product-price">ETB 1,200</p></div>
+                </div>
+            </div>
+            <a href="shop.html" class="view-all-btn">View all</a>
+        </div>
+    </section>
+
+    <!-- PRODUCTION STORY -->
+    <section class="production-section section-padding">
+        <div class="container">
+            <h2 class="section-title">HOW IT'S MADE_</h2>
+            <div class="production-grid">
+                <div class="production-item">
+                    <img src="1.png" alt="Natural fabrics and threads">
+                    <h3>THE FABRICS</h3>
+                    <p>Every garment begins with carefully chosen fabrics that feel soft on the skin yet remain durable for years to come. Quality is non-negotiable.</p>
+                </div>
+                <div class="production-item">
+                    <img src="s.png" alt="Hand dyeing fabrics">
+                    <h3>HAND-DYED COLORS</h3>
+                    <p>Our colors are inspired by nature and Ethiopian culture — from earthy sages to deep violets — each tone is hand-dyed for authenticity.</p>
+                </div>
+                <div class="production-item">
+                    <img src="2.png" alt="Sewing by hand">
+                    <h3>CRAFTED BY HAND</h3>
+                    <p>Every stitch is done with care by Betselot herself, ensuring that each piece is unique and full of personality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section section-padding">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-form">
+                    <h2>STAY IN THE LOOP</h2>
+                    <p>Be the first to know about new pieces, restocks, and behind-the-scenes stories.</p>
+                    <form action="#" method="POST">
+                        <div class="email-input-group">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="newsletter-image">
+                    <img src="m.jpg" alt="Handmade clothing workspace">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REWRITTEN "OUR MATERIALS" SECTION -->
+    <section class="our-materials-section">
+        <div class="container">
+            <!-- A grid container for a two-column layout -->
+            <div class="materials-grid">
+
+                <!-- Column 1: Text Content -->
+                <div class="materials-text-content">
+                    <h2 class="section-title">OUR MATERIALS_</h2>
+                    <p>All fabrics are sourced with care and respect — chosen for their comfort, durability, and beauty. I personally select and prepare each material to ensure the highest standard for you.</p>
+                </div>
+
+                <!-- Column 2: Image -->
+                <div class="materials-image-wrapper">
+                    <img src="1.png" alt="A stack of high-quality, soft, natural fabrics">
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- PRODUCT MODAL HTML STRUCTURE -->
+<div class="modal-overlay" id="product-modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-gallery">
+            <div class="modal-main-image"><img src="" alt="Main product view"></div>
+            <div class="modal-thumbnails"></div>
+        </div>
+        <div class="modal-details">
+            <h2 class="modal-title"></h2>
+            <p class="modal-price"></p>
+            <p class="modal-description"></p>
+            <div class="modal-options-group"><h4>Size</h4><div class="options-list" id="modal-sizes"></div></div>
+            <div class="modal-options-group"><h4>Color</h4><div class="options-list" id="modal-colors"></div></div>
+            <button class="add-to-cart-btn">Order Now</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // MODAL LOGIC (Copied from shop.html for consistency)
+        const productGrid = document.querySelector('.product-grid');
+        const modalOverlay = document.getElementById('product-modal');
+
+        if (productGrid && modalOverlay) {
+            const modal = {
+                content: modalOverlay.querySelector('.modal-content'),
+                closeBtn: modalOverlay.querySelector('.modal-close'),
+                mainImage: modalOverlay.querySelector('.modal-main-image img'),
+                thumbnailsContainer: modalOverlay.querySelector('.modal-thumbnails'),
+                title: modalOverlay.querySelector('.modal-title'),
+                price: modalOverlay.querySelector('.modal-price'),
+                description: modalOverlay.querySelector('.modal-description'),
+                sizesContainer: modalOverlay.querySelector('#modal-sizes'),
+                colorsContainer: modalOverlay.querySelector('#modal-colors')
+            };
+            const openModal = (card) => {
+                modal.title.textContent = card.dataset.title;
+                modal.price.textContent = card.dataset.price;
+                modal.description.textContent = card.dataset.description;
+                const images = card.dataset.images.split(',');
+                modal.mainImage.src = images[0];
+                modal.thumbnailsContainer.innerHTML = '';
+                images.forEach((imgSrc, index) => {
+                    const thumbDiv = document.createElement('div');
+                    thumbDiv.className = 'modal-thumbnail';
+                    if (index === 0) thumbDiv.classList.add('active');
+                    const thumbImg = document.createElement('img');
+                    thumbImg.src = imgSrc;
+                    thumbImg.alt = `${card.dataset.title} view ${index + 1}`;
+                    thumbDiv.appendChild(thumbImg);
+                    modal.thumbnailsContainer.appendChild(thumbDiv);
+                });
+                populateOptions(modal.sizesContainer, card.dataset.sizes);
+                populateOptions(modal.colorsContainer, card.dataset.colors);
+                modalOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeModal = () => {
+                modalOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            };
+            const populateOptions = (container, optionsString) => {
+                container.innerHTML = '';
+                if (optionsString) {
+                    optionsString.split(',').forEach(optionText => {
+                        const button = document.createElement('button');
+                        button.className = 'option-button';
+                        button.textContent = optionText;
+                        container.appendChild(button);
+                    });
+                }
+            };
+            productGrid.addEventListener('click', e => {
+                const card = e.target.closest('.product-card');
+                if (card) openModal(card);
+            });
+            modal.closeBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', e => {
+                if (e.target === modalOverlay) closeModal();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal();
+            });
+            modal.thumbnailsContainer.addEventListener('click', e => {
+                const thumbnail = e.target.closest('.modal-thumbnail');
+                if (thumbnail) {
+                    modal.mainImage.src = thumbnail.querySelector('img').src;
+                    modal.thumbnailsContainer.querySelector('.active').classList.remove('active');
+                    thumbnail.classList.add('active');
+                }
+            });
+            modal.content.addEventListener('click', e => {
+                if (e.target.classList.contains('option-button')) {
+                    const parent = e.target.parentElement;
+                    parent.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+        }
+
+        // GSAP SCROLL ANIMATIONS
+        // Check if GSAP is available before using it
+        if (typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            const animatedElements = document.querySelectorAll('.product-card, .production-item, .newsletter-content, .our-fabrics-section .container');
+            animatedElements.forEach(el => {
+                gsap.from(el, {
+                    scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
+                    opacity: 0, y: 50, duration: 0.8, ease: "power2.out"
+                });
+            });
+        } else {
+            console.log("GSAP not loaded. Skipping scroll animations.");
+        }
+    });
+
+    // Load Navbar & Footer
+    const loadComponent = (url, placeholderId) => {
+        const cacheBust = `?v=${new Date().getTime()}`;
+        fetch(url + cacheBust)
+            .then(response => response.ok ? response.text() : Promise.reject(`Failed to load ${url}`))
+            .then(data => {
+                const placeholder = document.getElementById(placeholderId);
+                if (placeholder) placeholder.innerHTML = data;
+            })
+            .catch(console.error);
+    };
+    loadComponent('navbar.html', 'navbar-placeholder');
+    loadComponent('footer.html', 'footer-placeholder');
+
+    // Load GSAP library
+    const gsapScript = document.createElement('script');
+    gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+    document.body.appendChild(gsapScript);
+
+    const scrollTriggerScript = document.createElement('script');
+    scrollTriggerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+    document.body.appendChild(scrollTriggerScript);
+</script>
+
+</body>
+</html>

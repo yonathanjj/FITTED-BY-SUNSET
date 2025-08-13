@@ -1,0 +1,167 @@
+<!-- navbar.html -->
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* DESKTOP NAVBAR STYLES */
+  .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: var(--bg-main);
+      border-bottom: 1px solid var(--bg-section);
+  }
+  .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      position: relative;
+  }
+  .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+  }
+  .logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+  }
+  .logo:hover { opacity: 0.8; }
+  .nav-group a {
+      font-family: var(--font-main);
+      text-transform: uppercase;
+      font-size: 14px;
+  }
+
+  /* HAMBURGER MENU */
+  .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1010;
+  }
+  .hamburger-menu .bar {
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-dark);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-main);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      visibility: hidden;
+  }
+  .mobile-menu-overlay.open {
+      transform: translateX(0);
+      visibility: visible;
+  }
+  .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      text-align: center;
+  }
+  .mobile-nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--text-dark);
+      text-transform: capitalize;
+      font-weight: 600;
+  }
+  .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 2.5rem;
+      color: var(--text-dark);
+      cursor: pointer;
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 768px) {
+      .header-nav {
+          height: 60px;
+      }
+      .nav-group {
+          display: none;
+      }
+      .hamburger-menu {
+          display: flex;
+      }
+      .logo {
+          position: static;
+          transform: none;
+      }
+  }
+</style>
+
+<header class="main-header">
+  <div class="container">
+    <nav class="header-nav">
+      <div class="nav-group left">
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <a href="index.html" class="logo">Fitted by Sunset</a>
+
+      <div class="nav-group right">
+        <a href="contact.html">Contact</a>
+        <a href="#">Cart</a>
+      </div>
+
+      <button class="hamburger-menu" id="hamburger-btn" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu-overlay" id="mobile-menu">
+  <button class="close-menu" id="close-menu-btn" aria-label="Close menu">&times;</button>
+  <nav class="mobile-nav-links">
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Cart</a>
+  </nav>
+</div>
+

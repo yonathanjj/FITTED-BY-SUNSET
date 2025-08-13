@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Fitted by Sunset</title>
+
+    <style>
+        /* GLOBAL STYLES */
+        :root {
+            --bg-main: #EBEAE8;
+            --bg-section: #DCD9D4;
+            --text-dark: #212121;
+            --text-muted: #555555;
+            --border-color: #A9A9A9;
+            --font-main: 'Source Code Pro', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-size: 14px;
+            line-height: 1.6;
+            /* Removed global text-transform for better readability on paragraphs */
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--text-muted);
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* PAGE LAYOUT */
+        main {
+            padding-top: 70px; /* Offset for fixed header */
+        }
+        .contact-page-wrapper {
+            padding: 80px 0;
+        }
+
+        /* CONTACT HEADER */
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .contact-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .contact-header p {
+            max-width: 500px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            line-height: 1.8;
+            /* Normal casing for readability */
+        }
+
+        /* CONTACT GRID LAYOUT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .contact-image-wrapper img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* CONTACT FORM STYLES */
+        .form-group {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            text-transform: uppercase; /* Uppercase for labels */
+            font-size: 0.85rem;
+        }
+        /* Floating label effect */
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -15px;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-bottom-color: var(--text-dark);
+        }
+        /* Added for better keyboard accessibility */
+        .form-group input:focus-visible,
+        .form-group textarea:focus-visible {
+            outline: 2px solid var(--text-dark);
+            outline-offset: 4px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: transparent;
+        }
+        .submit-btn {
+            display: inline-block;
+            border: 1px solid var(--text-dark);
+            padding: 12px 40px;
+            text-align: center;
+            background: transparent;
+            color: var(--text-dark);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .submit-btn:hover, .submit-btn:focus-visible {
+            background-color: var(--text-dark);
+            color: var(--bg-main);
+            outline: none; /* Avoid double outline on focus */
+        }
+
+        /* FAQ ACCORDION SECTION */
+        .faq-section {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            font-weight: 300; /* Made the + symbol a bit lighter */
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding-top 0.4s ease;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px; /* Increased max-height for longer answers */
+            padding-top: 15px;
+        }
+
+        /* --- NEW: STYLES FOR EXTRA CONTACT INFO --- */
+        .contact-extra {
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .contact-extra h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .contact-extra p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .contact-extra a {
+            color: var(--text-dark);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+        .contact-extra a:hover {
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-image-wrapper {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .contact-page-wrapper { padding: 60px 0; }
+            .contact-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<main>
+    <div class="contact-page-wrapper">
+        <div class="container">
+            <header class="contact-header">
+                <h1>SAY HELLO_</h1>
+                <p>Questions, custom requests, or just want to share some love? I’d be so happy to hear from you! Drop me a message below, call me, or send an email — I reply with a smile every time.</p>
+            </header>
+
+            <div class="contact-grid">
+                <div class="contact-form-wrapper">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder="Your Email">
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required placeholder="Write me a message..."></textarea>
+                            <label for="message">Write me a message...</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send with ❤️</button>
+                    </form>
+                </div>
+
+                <div class="contact-image-wrapper">
+                    <img src="b.png" alt="Betselot working joyfully in her studio">
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">WHERE ARE YOUR CLOTHES MADE?</div>
+                    <div class="faq-answer">
+                        <p>Each piece is handmade by me, Betselot, in my small studio in Ethiopia. Every stitch carries care, patience, and a little bit of magic.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">CAN I REQUEST SOMETHING CUSTOM?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I love making unique pieces just for you. Send me your ideas and we’ll bring them to life together.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">WHAT IF I NEED TO RETURN SOMETHING?</div>
+                    <div class="faq-answer">
+                        <p>If something isn’t quite right, just let me know within 14 days of receiving your order. We’ll work out a happy solution together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-extra">
+                <h3>Other ways to reach me:</h3>
+                <p>📞 Call or WhatsApp: <a href="tel:+251961313737">+251 96 131 3737</a></p>
+                <p>📧 Email: <a href="mailto:hello@betselot.com">hello@betselot.com</a></p>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- FAQ ACCORDION LOGIC ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // Load Navbar & Footer
+    const loadComponent = (url, placeholderId) => {
+        const cacheBust = `?v=${new Date().getTime()}`;
+        fetch(url + cacheBust)
+            .then(response => response.ok ? response.text() : Promise.reject(`Failed to load ${url}`))
+            .then(data => {
+                const placeholder = document.getElementById(placeholderId);
+                if (placeholder) placeholder.innerHTML = data;
+            })
+            .catch(console.error);
+    };
+    loadComponent('navbar.html', 'navbar-placeholder');
+    loadComponent('footer.html', 'footer-placeholder');
+</script>
+
+</body>
+</html>
